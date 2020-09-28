@@ -1,5 +1,5 @@
 Class {
-	#name : #'HE_ClassExplorer',
+	#name : #'HA_ClassExplorer',
 	#superclass : #Class,
 	#instVars : [
 		'projectLevel'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #converting }
-HE_ClassExplorer class >> asExplorerClass: aClass [
+HA_ClassExplorer class >> asExplorerClass: aClass [
 	 |aExpClass|
 	
 	aExpClass := self newFrom: (aClass clone).
@@ -17,7 +17,7 @@ HE_ClassExplorer class >> asExplorerClass: aClass [
 ]
 
 { #category : #'as yet unclassified' }
-HE_ClassExplorer >> calculateProjectLevel [
+HA_ClassExplorer >> calculateProjectLevel [
 
 	| superclassLevel |
 	"superclassLevel nees to be calculated in order to calculate the project level of the class"
@@ -29,7 +29,7 @@ HE_ClassExplorer >> calculateProjectLevel [
 ]
 
 { #category : #testing }
-HE_ClassExplorer >> isLeafClassInPackage [
+HA_ClassExplorer >> isLeafClassInPackage [
 
 	"whether the leaf classes are in the same project or not"
  
@@ -39,7 +39,7 @@ HE_ClassExplorer >> isLeafClassInPackage [
 ]
 
 { #category : #testing }
-HE_ClassExplorer >> isOrphanClassInPackage [
+HA_ClassExplorer >> isOrphanClassInPackage [
 
 	"whether the class is an orphan class or not. An Orphan class does not have superclass and subclasses in the same project"
  
@@ -48,7 +48,7 @@ HE_ClassExplorer >> isOrphanClassInPackage [
 ]
 
 { #category : #testing }
-HE_ClassExplorer >> isRootClassInPackage [
+HA_ClassExplorer >> isRootClassInPackage [
 
 	"If the class is a root class or not"
 
@@ -57,11 +57,11 @@ HE_ClassExplorer >> isRootClassInPackage [
 ]
 
 { #category : #accessing }
-HE_ClassExplorer >> projectLevel [
+HA_ClassExplorer >> projectLevel [
 	^ projectLevel
 ]
 
 { #category : #accessing }
-HE_ClassExplorer >> projectLevel: aNumber [ 
+HA_ClassExplorer >> projectLevel: aNumber [ 
 	projectLevel := aNumber.
 ]
