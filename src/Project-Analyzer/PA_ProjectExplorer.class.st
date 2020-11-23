@@ -33,7 +33,8 @@ PA_ProjectExplorer >> name: aName [
 
 { #category : #accessing }
 PA_ProjectExplorer >> packages [
-	"return all the classes of the project"
+
+	"return all the packages of the project"
 
 	^ packages
 ]
