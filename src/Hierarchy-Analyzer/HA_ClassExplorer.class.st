@@ -2,7 +2,7 @@ Class {
 	#name : #'HA_ClassExplorer',
 	#superclass : #Class,
 	#instVars : [
-		'projectLevel'
+		'packageLevel'
 	],
 	#category : #'Hierarchy-Analyzer-core'
 }
@@ -12,7 +12,7 @@ HA_ClassExplorer class >> asExplorerClass: aClass [
 	 |aExpClass|
 	
 	aExpClass := self newFrom: (aClass clone).
-	aExpClass projectLevel: 0.
+	aExpClass packageLevel: 0.
 	^ aExpClass
 ]
 
@@ -20,29 +20,28 @@ HA_ClassExplorer class >> asExplorerClass: aClass [
 HA_ClassExplorer >> calculateProjectLevel [
 
 	| superclassLevel |
-	"superclassLevel nees to be calculated in order to calculate the project level of the class"
+	"superclassLevel needs to be calculated in order to calculate the package level of the class"
 	superclassLevel := nil.
 	self isSuperclassInAnotherPackage
-		ifTrue: [ self projectLevel: 1 ]
-		ifFalse: [ self projectLevel: superclassLevel + 1 ].
-	^ self projectLevel
+		ifTrue: [ self packageLevel: 1 ]
+		ifFalse: [ self packageLevel: superclassLevel + 1 ].
+	^ self packageLevel
 ]
 
 { #category : #testing }
 HA_ClassExplorer >> isLeafClassInPackage [
 
-	"whether the leaf classes are in the same project or not"
- 
+	"whether the leaf classes are in the same package or not. A leaf class does not have any subclass."
+
 	^ self isSuperclassInAnotherPackage not and: [ 
 		  self isSubclassesInAnotherPackage ]
-
 ]
 
 { #category : #testing }
 HA_ClassExplorer >> isOrphanClassInPackage [
 
-	"whether the class is an orphan class or not. An Orphan class does not have superclass and subclasses in the same project"
- 
+	"Whether the class is an orphan class or not. An Orphan class does not have superclass and subclasses in the same project"
+
 	^ self isSuperclassInAnotherPackage and: [ 
 		  self isSubclassesInAnotherPackage ]
 ]
@@ -50,18 +49,18 @@ HA_ClassExplorer >> isOrphanClassInPackage [
 { #category : #testing }
 HA_ClassExplorer >> isRootClassInPackage [
 
-	"If the class is a root class or not"
+	"If the class is a root class or not in the package. A root class does not have superclass in the same package but subclasses in the same package"
 
 	^ self isSuperclassInAnotherPackage and: [ 
 		  self isSubclassesInAnotherPackage not ]
 ]
 
 { #category : #accessing }
-HA_ClassExplorer >> projectLevel [
-	^ projectLevel
+HA_ClassExplorer >> packageLevel [
+	^ packageLevel
 ]
 
 { #category : #accessing }
-HA_ClassExplorer >> projectLevel: aNumber [ 
-	projectLevel := aNumber.
+HA_ClassExplorer >> packageLevel: aNumber [ 
+	packageLevel := aNumber.
 ]
