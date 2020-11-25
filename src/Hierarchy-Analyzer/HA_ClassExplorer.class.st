@@ -28,18 +28,6 @@ HA_ClassExplorer >> calculatePackageLevel [
 	^ self packageLevel
 ]
 
-{ #category : #'as yet unclassified' }
-HA_ClassExplorer >> calculateProjectLevel [
-
-	| superclassLevel |
-	"superclassLevel needs to be calculated in order to calculate the package level of the class"
-	superclassLevel := nil.
-	self isSuperclassInAnotherPackage
-		ifTrue: [ self packageLevel: 1 ]
-		ifFalse: [ self packageLevel: superclassLevel + 1 ].
-	^ self packageLevel
-]
-
 { #category : #testing }
 HA_ClassExplorer >> isLeafClassInPackage [
 
