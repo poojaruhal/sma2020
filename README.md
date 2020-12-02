@@ -12,6 +12,9 @@ It tells where the class lies in the hierarchy chain, a root, an intermediate, o
 For example, based on the scope of the hierarchy, the level of the class PRExportCanvas in the hierarchy chain can vary.
 
 explorer := HA_ClassExplorer asExplorerClass: PRExportCanvas.
+
 explorer classDepth.
+
 explorer calculatePackageLevel.
+
 explorer calculateProjectLevel.
